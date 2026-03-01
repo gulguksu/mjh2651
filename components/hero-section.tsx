@@ -24,10 +24,8 @@ export function HeroSection() {
               교실
             </h1>
             <p className="mt-6 text-background/70 text-sm md:text-base max-w-md lg:max-w-xl leading-relaxed break-keep">
-              함께 배우고, 함께 웃고, 함께 성장하는 우리 아산신화초등학교 5학년 1반.{" "}
-              매일이 새로운{" "}
-              <br className="hidden lg:block" />
-              발견이고, 매 순간이 특별한 추억입니다.
+              <span className="block">함께 배우고, 함께 웃고, 함께 성장하는 우리 아산신화초등학교 5학년 1반.</span>
+              <span className="block">매일이 새로운 발견이고, 매 순간이 특별한 추억입니다.</span>
             </p>
           </div>
         </div>

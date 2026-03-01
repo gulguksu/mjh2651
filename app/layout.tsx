@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Noto_Sans_KR } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { AuthProvider } from '@/lib/auth-context'
 import './globals.css'
 
 const _spaceGrotesk = Space_Grotesk({
@@ -29,8 +30,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${_spaceGrotesk.variable} ${_notoSansKR.variable} font-sans antialiased`}>
-        {children}
-        <Analytics />
+        <AuthProvider>
+          {children}
+          <Analytics />
+        </AuthProvider>
       </body>
     </html>
   )
