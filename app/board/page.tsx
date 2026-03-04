@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
@@ -51,7 +51,7 @@ type PostDetail = PostListItem & {
   comments: CommentItem[]
 }
 
-export default function BoardPage() {
+function BoardPageInner() {
   const searchParams = useSearchParams()
   const postIdFromUrl = searchParams.get("post")
   const { user, isLoading: authLoading } = useAuth()
@@ -587,5 +587,13 @@ export default function BoardPage() {
 
       <Footer />
     </>
+  )
+}
+
+export default function BoardPage() {
+  return (
+    <Suspense fallback={<p className="text-muted-foreground py-12 text-center">불러오는 중...</p>}>
+      <BoardPageInner />
+    </Suspense>
   )
 }
