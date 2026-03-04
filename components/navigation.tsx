@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X, LogOut } from "lucide-react"
 import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
@@ -10,12 +11,21 @@ const navLinks = [
   { label: "우리 반 소개", href: "#about" },
   { label: "선생님", href: "#teacher" },
   { label: "갤러리", href: "#gallery" },
+  { label: "게시판", href: "/board" },
   { label: "공지사항", href: "#notice" },
 ]
 
 export function Navigation() {
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const { user, isLoading, logout } = useAuth()
+
+  const getLinkHref = (link: (typeof navLinks)[number]) => {
+    if (pathname === "/") return link.href
+    if (link.href.startsWith("#")) return `/${link.href}`
+    if (link.href === "/board") return "/#board"
+    return link.href
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -31,7 +41,7 @@ export function Navigation() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={getLinkHref(link)}
               className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors uppercase"
             >
               {link.label}
@@ -83,7 +93,7 @@ export function Navigation() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={getLinkHref(link)}
                 onClick={() => setIsOpen(false)}
                 className="text-lg text-foreground hover:text-accent transition-colors"
               >

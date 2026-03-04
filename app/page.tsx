@@ -4,6 +4,7 @@ import { MarqueeBanner } from "@/components/marquee-banner"
 import { AboutSection } from "@/components/about-section"
 import { TeacherSection } from "@/components/teacher-section"
 import { GallerySection } from "@/components/gallery-section"
+import { BoardSection } from "@/components/board-section"
 import { NoticeSection } from "@/components/notice-section"
 import { Footer } from "@/components/footer"
 
@@ -16,6 +17,7 @@ export default function Home() {
       <AboutSection />
       <TeacherSection />
       <GallerySection />
+      <BoardSection />
       <NoticeSection />
       <Footer />
     </main>
